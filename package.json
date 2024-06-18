@@ -1,0 +1,23 @@
+{
+  "name": "jit-cli",
+  "devDependencies": {
+    "@types/node": "^18.19.34",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "bin": {
+    "jit": "./bin/run.js"
+  },
+  "oclif": {
+    "bin": "jit",
+    "commands": "./dist/commands",
+    "dirname": "jit",
+    "topicSeparator": ":",
+    "type": "esm'"
+  },
+  "dependencies": {
+    "@oclif/core": "^4.0.4",
+    "inquirer": "^8.2.6",
+    "simple-git": "^3.25.0"
+  }
+}
