@@ -16,7 +16,7 @@ class Create extends core_1.Command {
             existingBranchesTree = JSON.parse((0, fs_1.readFileSync)('branches.json', 'utf-8'));
         }
         catch (err) {
-            if (err.code == "ENONENT") {
+            if (err.code == "ENOENT") {
                 this.log('needs to initialize this repo, no branch tree is found');
             }
             // prompt question to chooose base branch

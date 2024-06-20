@@ -21,7 +21,7 @@ export default class Create extends Command {
         try {
             existingBranchesTree = JSON.parse(readFileSync('branches.json', 'utf-8'))
         } catch (err) {
-            if (err.code == "ENONENT") {
+            if (err.code == "ENOENT") {
                 this.log('needs to initialize this repo, no branch tree is found')
             }
             
