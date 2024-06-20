@@ -12,7 +12,7 @@ export default class Create extends Command {
     }
 
 	public async run(): Promise<void> {
-        const git: SimpleGit = simpleGit().clean(CleanOptions.FORCE);
+        const git: SimpleGit = simpleGit().clean(CleanOptions.FORCE)
         const { args } = await this.parse(Create)
         
 
