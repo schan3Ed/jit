@@ -1,14 +1,16 @@
 
 import { Args, Command } from "@oclif/core";
-
 import { readFileSync } from "fs";
-
 import { simpleGit, CleanOptions, SimpleGit } from 'simple-git';
 import { InitializeBranchTree } from "../util/init";
 
 export default class Init extends Command {
     static args = {
-        branchName: Args.string(),
+        branchName: Args.string(
+            {
+                required: true,
+            }
+        ),
     }
 
 	public async run(): Promise<void> {
@@ -21,11 +23,16 @@ export default class Init extends Command {
             
             // if it is, create new branch and add that to current branch tree, otherwise, tell them to track current branch first
 
-            
-            
-            const base = Object.keys(existingBranchesTree).at(0)
+            const git: SimpleGit = simpleGit().clean(CleanOptions.FORCE)
 
-            this.log(`JIT is already initialized, do you want to keep "${base}" as your base branch?`)
+            git.checkoutLocalBranch(args.branchName)
+            
+            const newTree = {
+                ...existingBranchesTree,
+                [args.branchName] : {},
+            }
+
+            console.log(newTree)
         } catch (err) {
             if (err.code !== "ENOENT") {
                 this.error(err)
