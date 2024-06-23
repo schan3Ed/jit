@@ -10,16 +10,27 @@ class Create extends core_1.Command {
     async run() {
         const git = (0, simple_git_1.simpleGit)().clean(simple_git_1.CleanOptions.FORCE);
         const { args } = await this.parse(Create);
-        console.log((await git.branch()).branches);
-        var existingBranchesTree;
         try {
-            existingBranchesTree = JSON.parse((0, fs_1.readFileSync)('branches.json', 'utf-8'));
+            const existingBranchesTree = JSON.parse((0, fs_1.readFileSync)('branches.json', 'utf-8'));
         }
         catch (err) {
+            const inquirer = require('inquirer');
             if (err.code == "ENOENT") {
                 this.log('needs to initialize this repo, no branch tree is found');
             }
-            // prompt question to chooose base branch
+            const allBranches = (await git.branch()).branches;
+            const localBranches = Object.keys(allBranches).filter(key => {
+                return !key.startsWith("remotes/");
+            });
+            console.log(localBranches);
+            inquirer.prompt([
+                {
+                    type: "list",
+                    name: "baseBranch",
+                    choices: localBranches,
+                    message: "Please select a base branch",
+                }
+            ]).then((answers) => { console.log(answers.baseBranch); });
         }
     }
 }
