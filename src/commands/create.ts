@@ -18,6 +18,7 @@ export default class Create extends Command {
 
         this.log((await git.branch()).current)
         var existingBranchesTree: any
+        
         try {
             existingBranchesTree = JSON.parse(readFileSync('branches.json', 'utf-8'))
         } catch (err) {
