@@ -44,8 +44,6 @@ export default class Init extends Command {
                     [answers.baseBranch]: {},
                 }), {flag: "w"})
             })
-
-            
         }
     }
 }
