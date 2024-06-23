@@ -10,7 +10,7 @@ class Create extends core_1.Command {
     async run() {
         const git = (0, simple_git_1.simpleGit)().clean(simple_git_1.CleanOptions.FORCE);
         const { args } = await this.parse(Create);
-        this.log((await git.branch()).current);
+        console.log((await git.branch()).branches);
         var existingBranchesTree;
         try {
             existingBranchesTree = JSON.parse((0, fs_1.readFileSync)('branches.json', 'utf-8'));

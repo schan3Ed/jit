@@ -16,9 +16,9 @@ export default class Create extends Command {
         const { args } = await this.parse(Create)
         
 
-        this.log((await git.branch()).current)
+        console.log((await git.branch()).branches)
         var existingBranchesTree: any
-        
+
         try {
             existingBranchesTree = JSON.parse(readFileSync('branches.json', 'utf-8'))
         } catch (err) {
