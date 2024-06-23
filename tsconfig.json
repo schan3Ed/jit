@@ -4,8 +4,5 @@
 		"outDir": "./dist",
 		"module": "nodenext",
 		"baseUrl": "./src",  // Specify your base directory
-		"paths": {
-		  "@src/*": ["*"]  // Define your custom paths
-		},
 	}
 }

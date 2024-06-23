@@ -5,14 +5,8 @@ export async function InitializeBranchTree(): Promise<void> {
     const inquirer = require('inquirer');
     const git: SimpleGit = simpleGit().clean(CleanOptions.FORCE)
 
-    const allBranches = (await git.branch()).branches
+    const localBranches = Object.keys((await git.branchLocal()).branches)
     
-    const localBranches = Object.keys(allBranches).filter(key => {
-        return !key.startsWith("remotes/")
-    })
-
-    console.log(localBranches)
-
     inquirer.prompt([
         {
             type: "list",
