@@ -40,9 +40,9 @@ export default class Init extends Command {
                     message: "Please select a base branch",
                 }
             ]).then((answers: any) => {
-                writeFileSync("branchTree.json", {
-                    answers.baseBranch: {},
-                }, {flag: "w"})
+                writeFileSync("branchTree.json", JSON.stringify({
+                    [answers.baseBranch]: {},
+                }), {flag: "w"})
             })
 
             
