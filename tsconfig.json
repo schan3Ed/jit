@@ -2,6 +2,10 @@
 	"include": [ "src/**/*" ],
 	"compilerOptions": {
 		"outDir": "./dist",
-		"module": "nodenext"
+		"module": "nodenext",
+		"baseUrl": "./src",  // Specify your base directory
+		"paths": {
+		  "@src/*": ["*"]  // Define your custom paths
+		},
 	}
 }

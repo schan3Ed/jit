@@ -1,9 +1,10 @@
 
 import { Args, Command } from "@oclif/core";
 
-import { writeFileSync, readFileSync, writeFile } from "fs";
+import { readFileSync } from "fs";
 
 import { simpleGit, CleanOptions, SimpleGit } from 'simple-git';
+import { InitializeBranchTree } from "@src/util/init";
 
 export default class Init extends Command {
     static args = {
@@ -11,39 +12,21 @@ export default class Init extends Command {
     }
 
 	public async run(): Promise<void> {
-        const git: SimpleGit = simpleGit().clean(CleanOptions.FORCE)
         const { args } = await this.parse(Init)
-
+        
         try {
             const existingBranchesTree = JSON.parse(readFileSync('branchTree.json', 'utf-8'))
+            
+            const base = Object.keys(existingBranchesTree).at(0)
+
+            this.log(`JIT is already initialized, do you want to keep "${base}" as your base branch?`)
         } catch (err) {
-
-            const inquirer = require('inquirer');
-
-            if (err.code == "ENOENT") {
-                this.log('needs to initialize this repo, no branch tree is found')
+            if (err.code !== "ENOENT") {
+                this.error(err)
             }
             
-            const allBranches = (await git.branch()).branches
-            
-            const localBranches = Object.keys(allBranches).filter(key => {
-                return !key.startsWith("remotes/")
-            })
-
-            console.log(localBranches)
-
-            inquirer.prompt([
-                {
-                    type: "list",
-                    name: "baseBranch",
-                    choices: localBranches,
-                    message: "Please select a base branch",
-                }
-            ]).then((answers: any) => {
-                writeFileSync("branchTree.json", JSON.stringify({
-                    [answers.baseBranch]: {},
-                }), {flag: "w"})
-            })
+            this.log('needs to initialize this repo, no branch tree is found')
+            this.log("run jit init to initialize this repo")
         }
     }
 }
