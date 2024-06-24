@@ -12,3 +12,4 @@ This is a tool for managing git command. To makes it easier to manager branches 
 - AI generated commit messages AND/OR PR messages
 - manage rebasing
 
+
