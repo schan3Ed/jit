@@ -14,7 +14,7 @@ export default class Checkout extends Command {
     }
 
 	public async run(): Promise<void> {
-        const { args } = await this.parse(Init)
+        const { args } = await this.parse(Checkout)
         
         try {
             const existingBranchesTree = JSON.parse(readFileSync('branchTree.json', 'utf-8'))
