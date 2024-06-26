@@ -1,8 +1,12 @@
 {
-	"include": [ "src/**/*" ],
-	"compilerOptions": {
-		"outDir": "./dist",
-		"module": "nodenext",
-		"baseUrl": "./src",  // Specify your base directory
-	}
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "nodenext",
+    "baseUrl": "./src" // Specify your base directory
+  },
+  "paths": {
+    "@/*": ["./src/*"]
+  },
+  "exclude": ["node_modules"]
 }
