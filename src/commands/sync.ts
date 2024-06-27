@@ -1,7 +1,7 @@
 import { Args, Command } from "@oclif/core";
 import { readFileSync } from "fs";
 import { simpleGit, CleanOptions, SimpleGit } from "simple-git";
-import { InitializeBranchTree } from "@/util/init";
+import { InitializeBranchTree } from "../util/init";
 
 export default class Sync extends Command {
   static args = {
