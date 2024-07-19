@@ -18,6 +18,7 @@
   "dependencies": {
     "@oclif/core": "^4.0.4",
     "inquirer": "^8.2.6",
-    "simple-git": "^3.25.0"
+    "simple-git": "^3.25.0",
+    "typescript-tree": "^0.0.4"
   }
 }
